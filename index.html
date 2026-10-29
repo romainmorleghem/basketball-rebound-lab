@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101211">
+  <meta name="description" content="A Monte Carlo basketball simulation exploring rebound patterns and shot angles.">
+  <title>Basketball Rebound Lab | Monte Carlo Simulation</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="#home" aria-label="Basketball Rebound Lab home">
+        <span class="logo-main">BASKETBALL<span class="logo-arrow">↗</span></span>
+        <span class="logo-sub">REBOUND LAB</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#experiment">Experiment</a>
+        <a href="#angle-explorer">Angle Explorer</a>
+        <a href="#conclusion">Conclusion</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">PHYSICS · BASKETBALL · MONTE CARLO</p>
+
+        <h1>
+          Where does a missed
+          <span class="accent">shot land?</span>
+        </h1>
+
+        <p class="hero-description">
+          Thousands of simulated shots. Randomized initial conditions.
+          One question: can we understand basketball rebounds through
+          physics and probability?
+        </p>
+
+        <a class="primary-button" href="#experiment">
+          Explore the experiment
+          <span aria-hidden="true">↘</span>
+        </a>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">3D</span>
+            <span class="stat-label">Trajectory model</span>
+          </div>
+
+          <div class="stat">
+            <span class="stat-number">Monte Carlo</span>
+            <span class="stat-label">Randomized shots</span>
+          </div>
+
+          <div class="stat">
+            <span class="stat-number">8</span>
+            <span class="stat-label">Shot angles</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Basketball trajectory illustration">
+        <div class="visual-grid"></div>
+        <div class="visual-orbit orbit-one"></div>
+        <div class="visual-orbit orbit-two"></div>
+        <div class="trajectory-line"></div>
+        <div class="trajectory-dot dot-one"></div>
+        <div class="trajectory-dot dot-two"></div>
+        <div class="trajectory-dot dot-three"></div>
+
+        <div class="hoop-illustration">
+          <div class="backboard"></div>
+          <div class="rim"></div>
+          <div class="net"></div>
+        </div>
+
+        <div class="ball" role="img" aria-label="Orange basketball">
+          <span class="ball-line ball-line-one"></span>
+          <span class="ball-line ball-line-two"></span>
+          <span class="ball-line ball-line-three"></span>
+        </div>
+
+        <div class="visual-caption">
+          <span class="caption-dot"></span>
+          SIMULATED TRAJECTORY
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRODUCTION VIDEOS -->
+    <section class="video-section" id="experiment">
+      <div class="section-heading">
+        <p class="eyebrow">01 / THE EXPERIMENT</p>
+        <h2>From random shots to <span class="accent">rebound patterns.</span></h2>
+        <p>
+          First, discover the Monte Carlo experiment and the initial
+          trajectories used to investigate basketball rebounds.
+        </p>
+      </div>
+
+      <div class="intro-videos">
+        <article class="video-card">
+          <div class="video-wrapper">
+            <video
+              controls
+              preload="metadata"
+              playsinline
+              aria-label="The Monte Carlo Experiment"
+            >
+              <source
+                src="assets/videos/BasketballMonteCarloIntro.mp4"
+                type="video/mp4"
+              >
+              Your browser does not support HTML video.
+            </video>
+          </div>
+
+          <div class="video-info">
+            <span class="video-number">VIDEO 01</span>
+            <h3>The Monte Carlo Experiment</h3>
+            <p>
+              Discover the simulation, its physical model and the use
+              of randomized initial conditions.
+            </p>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-wrapper">
+            <video
+              controls
+              preload="metadata"
+              playsinline
+              aria-label="Initial Trajectories: Simulated Shots"
+            >
+              <source
+                src="assets/videos/FirstShots.mp4"
+                type="video/mp4"
+              >
+              Your browser does not support HTML video.
+            </video>
+          </div>
+
+          <div class="video-info">
+            <span class="video-number">VIDEO 02</span>
+            <h3>Initial Trajectories: Simulated Shots</h3>
+            <p>
+              Follow the simulated shots and observe how trajectories
+              interact with the rim and backboard.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ANGLE EXPLORER -->
+    <section class="angle-section" id="angle-explorer">
+      <div class="section-heading">
+        <p class="eyebrow">02 / ANGLE EXPLORER</p>
+        <h2>Change the angle. <span class="accent">Explore the motion.</span></h2>
+        <p>
+          Select a shooting angle to watch the corresponding Manim
+          simulation. Each angle has its own video.
+        </p>
+      </div>
+
+      <div class="angle-panel">
+        <div class="angle-panel-header">
+          <div>
+            <span class="panel-label">SELECT A SHOT ANGLE</span>
+            <p class="panel-description">
+              Choose an angle to load its simulation.
+            </p>
+          </div>
+
+          <span class="selected-angle" id="selected-angle">0°</span>
+        </div>
+
+        <div class="angle-selector" role="group" aria-label="Select shot angle">
+          <button class="angle-button active" type="button"
+                  data-angle="0" aria-pressed="true">0°</button>
+          <button class="angle-button" type="button"
+                  data-angle="10" aria-pressed="false">10°</button>
+          <button class="angle-button" type="button"
+                  data-angle="20" aria-pressed="false">20°</button>
+          <button class="angle-button" type="button"
+                  data-angle="30" aria-pressed="false">30°</button>
+          <button class="angle-button" type="button"
+                  data-angle="45" aria-pressed="false">45°</button>
+          <button class="angle-button" type="button"
+                  data-angle="60" aria-pressed="false">60°</button>
+          <button class="angle-button" type="button"
+                  data-angle="70" aria-pressed="false">70°</button>
+          <button class="angle-button" type="button"
+                  data-angle="80" aria-pressed="false">80°</button>
+        </div>
+
+        <div class="angle-video-card">
+          <div class="angle-video-heading">
+            <div>
+              <span class="video-number">ANGLE SIMULATION</span>
+              <h3 id="angle-video-title">Trajectories at 0°</h3>
+            </div>
+
+            <span class="angle-tag" id="angle-video-tag">0°</span>
+          </div>
+
+          <div class="video-wrapper angle-video-wrapper">
+            <video
+              id="angle-video"
+              controls
+              preload="metadata"
+              playsinline
+              aria-label="Basketball simulation at 0 degrees"
+            >
+              <source
+                id="angle-video-source"
+                src="assets/videos/BasketballRebounds0Deg.mp4"
+                type="video/mp4"
+              >
+              Your browser does not support HTML video.
+            </video>
+          </div>
+
+          <p class="angle-video-caption" id="angle-video-caption">
+            Manim simulation for a 0° shot angle.
+          </p>
+
+          <p class="angle-status" id="angle-status" aria-live="polite">
+            Selected angle: 0°
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSIGHTS AND CONCLUSION -->
+    <section class="conclusion-section" id="conclusion">
+      <div class="section-heading">
+        <p class="eyebrow">03 / INSIGHTS &amp; CONCLUSION</p>
+        <h2>What can the simulation <span class="accent">teach us?</span></h2>
+        <p>
+          After exploring the different shot angles, take a look at the
+          main findings and the conclusions drawn from the experiment.
+        </p>
+      </div>
+
+      <article class="video-card conclusion-card">
+        <div class="video-wrapper">
+          <video
+            controls
+            preload="metadata"
+            playsinline
+            aria-label="Basketball Rebound Findings"
+          >
+            <source
+              src="assets/videos/BasketballReboundFindings30s.mp4"
+              type="video/mp4"
+            >
+            Your browser does not support HTML video.
+          </video>
+        </div>
+
+        <div class="video-info">
+          <span class="video-number">FINAL VIDEO</span>
+          <h3>Basketball Rebound Findings</h3>
+          <p>
+            A visual summary of the simulation results and the insights
+            gained from studying rebound trajectories.
+          </p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a class="logo footer-logo" href="#home">
+        <span class="logo-main">BASKETBALL<span class="logo-arrow">↗</span></span>
+        <span class="logo-sub">REBOUND LAB</span>
+      </a>
+
+      <p>
+        Exploring basketball through physics, probability and simulation.
+      </p>
+
+      <a class="back-to-top" href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
