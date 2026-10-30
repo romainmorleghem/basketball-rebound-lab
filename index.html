@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,6 @@
   <link rel="stylesheet" href="css/code-viewer.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" defer></script>
@@ -32,7 +32,6 @@
       </nav>
     </div>
   </header>
-
   <main>
     <!-- HERO -->
     <section class="hero" id="home">
@@ -61,7 +60,7 @@
             <span class="stat-label">Randomized shots</span>
           </div>
           <div class="stat">
-            <span class="stat-number">8</span>
+            <span class="stat-number">6</span>
             <span class="stat-label">Shot angles</span>
           </div>
         </div>
@@ -90,14 +89,13 @@
         </div>
       </div>
     </section>
-
     <!-- INTRODUCTION VIDEOS -->
     <section class="video-section" id="experiment">
       <div class="section-heading">
         <p class="eyebrow">01 / THE EXPERIMENT</p>
         <h2>From random shots to <span class="accent">rebound patterns.</span></h2>
         <p>
-          First, discover the Monte Carlo experiment and the initial
+          First, discover the Monte Carlo experiment and example of
           trajectories used to investigate basketball rebounds.
         </p>
       </div>
@@ -127,7 +125,7 @@
           </div>
           <div class="video-info">
             <span class="video-number">VIDEO 02</span>
-            <h3>Initial Trajectories: Simulated Shots</h3>
+            <h3>Simulated Shots</h3>
             <p>
               Follow the simulated shots and observe how trajectories
               interact with the rim and backboard.
@@ -136,7 +134,6 @@
         </article>
       </div>
     </section>
-
     <!-- ANGLE EXPLORER -->
     <section class="angle-section" id="angle-explorer">
       <div class="section-heading">
@@ -157,13 +154,11 @@
         </div>
         <div class="angle-selector" role="group" aria-label="Select shot angle">
           <button class="angle-button active" type="button" data-angle="0" aria-pressed="true">0°</button>
-          <button class="angle-button" type="button" data-angle="10" aria-pressed="false">10°</button>
-          <button class="angle-button" type="button" data-angle="20" aria-pressed="false">20°</button>
+          <button class="angle-button" type="button" data-angle="15" aria-pressed="false">15°</button>
           <button class="angle-button" type="button" data-angle="30" aria-pressed="false">30°</button>
           <button class="angle-button" type="button" data-angle="45" aria-pressed="false">45°</button>
           <button class="angle-button" type="button" data-angle="60" aria-pressed="false">60°</button>
-          <button class="angle-button" type="button" data-angle="70" aria-pressed="false">70°</button>
-          <button class="angle-button" type="button" data-angle="80" aria-pressed="false">80°</button>
+          <button class="angle-button" type="button" data-angle="75" aria-pressed="false">75°</button>
         </div>
         <div class="angle-video-card">
           <div class="angle-video-heading">
@@ -175,7 +170,7 @@
           </div>
           <div class="video-wrapper angle-video-wrapper">
             <video id="angle-video" controls preload="metadata" playsinline aria-label="Basketball simulation at 0 degrees">
-              <source id="angle-video-source" src="assets/videos/BasketballRebounds0Deg.mp4" type="video/mp4">
+              <source id="angle-video-source" src="assets/videos/0deg.mp4" type="video/mp4">
               Your browser does not support HTML video.
             </video>
           </div>
@@ -188,7 +183,6 @@
         </div>
       </div>
     </section>
-
     <!-- INSIGHTS AND CONCLUSION -->
     <section class="conclusion-section" id="conclusion">
       <div class="section-heading">
@@ -216,7 +210,6 @@
         </div>
       </article>
     </section>
-
     <!-- PYTHON SOURCE CODE -->
     <section class="code-section" id="python-code">
       <div class="section-heading">
@@ -228,7 +221,6 @@
           handling and rebound analysis.
         </p>
       </div>
-
       <div class="code-panel">
         <div class="code-header">
           <div class="code-file">
@@ -245,7 +237,6 @@
                download="BasketBall_Rebounds_MonteCarlo.py">Download .py ↓</a>
           </div>
         </div>
-
         <div class="code-container">
           <pre class="line-numbers"><code id="python-source" class="language-python">Loading Python source code...</code></pre>
         </div>
@@ -256,7 +247,6 @@
       </div>
     </section>
   </main>
-
   <footer class="site-footer">
     <div class="footer-inner">
       <a class="logo footer-logo" href="#home">
