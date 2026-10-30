@@ -1,4 +1,9 @@
+
 document.addEventListener("DOMContentLoaded", () => {
+  // ============================================================
+  // ANGLE EXPLORER
+  // ============================================================
+
   const angleButtons = document.querySelectorAll("[data-angle]");
 
   const angleVideo = document.getElementById("angle-video");
@@ -92,4 +97,84 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialise the page with the 0-degree video.
   selectAngle("0");
+
+
+  // ============================================================
+  // PYTHON SOURCE CODE VIEWER
+  // ============================================================
+
+  const pythonSource = document.getElementById("python-source");
+  const copyCodeButton = document.getElementById("copy-code");
+  const codeStatus = document.getElementById("code-status");
+
+  const pythonFile = "assets/BasketBall_Rebounds_MonteCarlo.py";
+  let loadedPythonCode = "";
+
+  async function loadPythonSource() {
+    if (!pythonSource) return;
+
+    try {
+      const response = await fetch(pythonFile);
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      loadedPythonCode = await response.text();
+      pythonSource.textContent = loadedPythonCode;
+
+      if (window.Prism) {
+        window.Prism.highlightElement(pythonSource);
+      }
+
+      if (codeStatus) {
+        codeStatus.textContent = "Source code loaded successfully.";
+        codeStatus.classList.remove("error");
+      }
+    } catch (error) {
+      console.error("Could not load Python source:", error);
+      pythonSource.textContent =
+        "Unable to load the Python source code. Check that the .py file is in the assets folder.";
+
+      if (codeStatus) {
+        codeStatus.textContent =
+          "Could not load the source file. Check the file path and run the site through a local HTTP server.";
+        codeStatus.classList.add("error");
+      }
+
+      if (copyCodeButton) {
+        copyCodeButton.disabled = true;
+      }
+    }
+  }
+
+  if (copyCodeButton) {
+    copyCodeButton.addEventListener("click", async () => {
+      if (!loadedPythonCode) return;
+
+      try {
+        await navigator.clipboard.writeText(loadedPythonCode);
+
+        copyCodeButton.textContent = "Copied!";
+        if (codeStatus) {
+          codeStatus.textContent = "Python source copied to clipboard.";
+          codeStatus.classList.remove("error");
+        }
+
+        window.setTimeout(() => {
+          copyCodeButton.textContent = "Copy code";
+        }, 1800);
+      } catch (error) {
+        console.error("Could not copy Python source:", error);
+
+        if (codeStatus) {
+          codeStatus.textContent =
+            "Clipboard access was blocked. You can still select and copy the code manually.";
+          codeStatus.classList.add("error");
+        }
+      }
+    });
+  }
+
+  loadPythonSource();
 });
