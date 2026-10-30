@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const angleVideo = document.getElementById("angle-video");
   const angleVideoSource = document.getElementById("angle-video-source");
-
   const selectedAngle = document.getElementById("selected-angle");
   const angleVideoTitle = document.getElementById("angle-video-title");
   const angleVideoTag = document.getElementById("angle-video-tag");
@@ -16,14 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const angleStatus = document.getElementById("angle-status");
 
   const angleVideos = {
-    0: "BasketballRebounds0Deg.mp4",
-    10: "BasketballRebounds10Deg.mp4",
-    20: "BasketballRebounds20Deg.mp4",
-    30: "BasketballRebounds30Deg.mp4",
-    45: "BasketballRebounds45Deg.mp4",
-    60: "BasketballRebounds60Deg.mp4",
-    70: "BasketballRebounds70Deg.mp4",
-    80: "BasketballRebounds80Deg.mp4"
+    0: "0deg.mp4",
+    15: "15deg.mp4",
+    30: "30deg.mp4",
+    45: "45deg.mp4",
+    60: "60deg.mp4",
+    75: "75deg.mp4"
   };
 
   function selectAngle(angle) {
@@ -48,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (selectedAngle) {
       selectedAngle.textContent = angleLabel;
     }
-
     if (angleVideoTitle) {
       angleVideoTitle.textContent = `Trajectories at ${angleLabel}`;
     }
@@ -106,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const pythonSource = document.getElementById("python-source");
   const copyCodeButton = document.getElementById("copy-code");
   const codeStatus = document.getElementById("code-status");
-
   const pythonFile = "assets/BasketBall_Rebounds_MonteCarlo.py";
   let loadedPythonCode = "";
 
@@ -133,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } catch (error) {
       console.error("Could not load Python source:", error);
+
       pythonSource.textContent =
         "Unable to load the Python source code. Check that the .py file is in the assets folder.";
 
@@ -156,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
         await navigator.clipboard.writeText(loadedPythonCode);
 
         copyCodeButton.textContent = "Copied!";
+
         if (codeStatus) {
           codeStatus.textContent = "Python source copied to clipboard.";
           codeStatus.classList.remove("error");
