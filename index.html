@@ -8,9 +8,15 @@
   <meta name="description" content="A Monte Carlo basketball simulation exploring rebound patterns and shot angles.">
   <title>Basketball Rebound Lab | Monte Carlo Simulation</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/code-viewer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
-
 <body>
   <header class="site-header">
     <div class="header-inner">
@@ -18,11 +24,11 @@
         <span class="logo-main">BASKETBALL<span class="logo-arrow">↗</span></span>
         <span class="logo-sub">REBOUND LAB</span>
       </a>
-
       <nav class="main-nav" aria-label="Main navigation">
         <a href="#experiment">Experiment</a>
         <a href="#angle-explorer">Angle Explorer</a>
         <a href="#conclusion">Conclusion</a>
+        <a href="#python-code">Python Code</a>
       </nav>
     </div>
   </header>
@@ -32,41 +38,34 @@
     <section class="hero" id="home">
       <div class="hero-content">
         <p class="eyebrow">PHYSICS · BASKETBALL · MONTE CARLO</p>
-
         <h1>
           Where does a missed
           <span class="accent">shot land?</span>
         </h1>
-
         <p class="hero-description">
           Thousands of simulated shots. Randomized initial conditions.
           One question: can we understand basketball rebounds through
           physics and probability?
         </p>
-
         <a class="primary-button" href="#experiment">
           Explore the experiment
           <span aria-hidden="true">↘</span>
         </a>
-
         <div class="hero-stats">
           <div class="stat">
             <span class="stat-number">3D</span>
             <span class="stat-label">Trajectory model</span>
           </div>
-
           <div class="stat">
             <span class="stat-number">Monte Carlo</span>
             <span class="stat-label">Randomized shots</span>
           </div>
-
           <div class="stat">
             <span class="stat-number">8</span>
             <span class="stat-label">Shot angles</span>
           </div>
         </div>
       </div>
-
       <div class="hero-visual" aria-label="Basketball trajectory illustration">
         <div class="visual-grid"></div>
         <div class="visual-orbit orbit-one"></div>
@@ -75,19 +74,16 @@
         <div class="trajectory-dot dot-one"></div>
         <div class="trajectory-dot dot-two"></div>
         <div class="trajectory-dot dot-three"></div>
-
         <div class="hoop-illustration">
           <div class="backboard"></div>
           <div class="rim"></div>
           <div class="net"></div>
         </div>
-
         <div class="ball" role="img" aria-label="Orange basketball">
           <span class="ball-line ball-line-one"></span>
           <span class="ball-line ball-line-two"></span>
           <span class="ball-line ball-line-three"></span>
         </div>
-
         <div class="visual-caption">
           <span class="caption-dot"></span>
           SIMULATED TRAJECTORY
@@ -105,24 +101,14 @@
           trajectories used to investigate basketball rebounds.
         </p>
       </div>
-
       <div class="intro-videos">
         <article class="video-card">
           <div class="video-wrapper">
-            <video
-              controls
-              preload="metadata"
-              playsinline
-              aria-label="The Monte Carlo Experiment"
-            >
-              <source
-                src="assets/videos/BasketballMonteCarloIntro.mp4"
-                type="video/mp4"
-              >
+            <video controls preload="metadata" playsinline aria-label="The Monte Carlo Experiment">
+              <source src="assets/videos/BasketballMonteCarloIntro.mp4" type="video/mp4">
               Your browser does not support HTML video.
             </video>
           </div>
-
           <div class="video-info">
             <span class="video-number">VIDEO 01</span>
             <h3>The Monte Carlo Experiment</h3>
@@ -132,23 +118,13 @@
             </p>
           </div>
         </article>
-
         <article class="video-card">
           <div class="video-wrapper">
-            <video
-              controls
-              preload="metadata"
-              playsinline
-              aria-label="Initial Trajectories: Simulated Shots"
-            >
-              <source
-                src="assets/videos/FirstShots.mp4"
-                type="video/mp4"
-              >
+            <video controls preload="metadata" playsinline aria-label="Initial Trajectories: Simulated Shots">
+              <source src="assets/videos/FirstShots.mp4" type="video/mp4">
               Your browser does not support HTML video.
             </video>
           </div>
-
           <div class="video-info">
             <span class="video-number">VIDEO 02</span>
             <h3>Initial Trajectories: Simulated Shots</h3>
@@ -171,69 +147,41 @@
           simulation. Each angle has its own video.
         </p>
       </div>
-
       <div class="angle-panel">
         <div class="angle-panel-header">
           <div>
             <span class="panel-label">SELECT A SHOT ANGLE</span>
-            <p class="panel-description">
-              Choose an angle to load its simulation.
-            </p>
+            <p class="panel-description">Choose an angle to load its simulation.</p>
           </div>
-
           <span class="selected-angle" id="selected-angle">0°</span>
         </div>
-
         <div class="angle-selector" role="group" aria-label="Select shot angle">
-          <button class="angle-button active" type="button"
-                  data-angle="0" aria-pressed="true">0°</button>
-          <button class="angle-button" type="button"
-                  data-angle="10" aria-pressed="false">10°</button>
-          <button class="angle-button" type="button"
-                  data-angle="20" aria-pressed="false">20°</button>
-          <button class="angle-button" type="button"
-                  data-angle="30" aria-pressed="false">30°</button>
-          <button class="angle-button" type="button"
-                  data-angle="45" aria-pressed="false">45°</button>
-          <button class="angle-button" type="button"
-                  data-angle="60" aria-pressed="false">60°</button>
-          <button class="angle-button" type="button"
-                  data-angle="70" aria-pressed="false">70°</button>
-          <button class="angle-button" type="button"
-                  data-angle="80" aria-pressed="false">80°</button>
+          <button class="angle-button active" type="button" data-angle="0" aria-pressed="true">0°</button>
+          <button class="angle-button" type="button" data-angle="10" aria-pressed="false">10°</button>
+          <button class="angle-button" type="button" data-angle="20" aria-pressed="false">20°</button>
+          <button class="angle-button" type="button" data-angle="30" aria-pressed="false">30°</button>
+          <button class="angle-button" type="button" data-angle="45" aria-pressed="false">45°</button>
+          <button class="angle-button" type="button" data-angle="60" aria-pressed="false">60°</button>
+          <button class="angle-button" type="button" data-angle="70" aria-pressed="false">70°</button>
+          <button class="angle-button" type="button" data-angle="80" aria-pressed="false">80°</button>
         </div>
-
         <div class="angle-video-card">
           <div class="angle-video-heading">
             <div>
               <span class="video-number">ANGLE SIMULATION</span>
               <h3 id="angle-video-title">Trajectories at 0°</h3>
             </div>
-
             <span class="angle-tag" id="angle-video-tag">0°</span>
           </div>
-
           <div class="video-wrapper angle-video-wrapper">
-            <video
-              id="angle-video"
-              controls
-              preload="metadata"
-              playsinline
-              aria-label="Basketball simulation at 0 degrees"
-            >
-              <source
-                id="angle-video-source"
-                src="assets/videos/BasketballRebounds0Deg.mp4"
-                type="video/mp4"
-              >
+            <video id="angle-video" controls preload="metadata" playsinline aria-label="Basketball simulation at 0 degrees">
+              <source id="angle-video-source" src="assets/videos/BasketballRebounds0Deg.mp4" type="video/mp4">
               Your browser does not support HTML video.
             </video>
           </div>
-
           <p class="angle-video-caption" id="angle-video-caption">
             Manim simulation for a 0° shot angle.
           </p>
-
           <p class="angle-status" id="angle-status" aria-live="polite">
             Selected angle: 0°
           </p>
@@ -251,23 +199,13 @@
           main findings and the conclusions drawn from the experiment.
         </p>
       </div>
-
       <article class="video-card conclusion-card">
         <div class="video-wrapper">
-          <video
-            controls
-            preload="metadata"
-            playsinline
-            aria-label="Basketball Rebound Findings"
-          >
-            <source
-              src="assets/videos/BasketballReboundFindings30s.mp4"
-              type="video/mp4"
-            >
+          <video controls preload="metadata" playsinline aria-label="Basketball Rebound Findings">
+            <source src="assets/videos/BasketballReboundFindings30s.mp4" type="video/mp4">
             Your browser does not support HTML video.
           </video>
         </div>
-
         <div class="video-info">
           <span class="video-number">FINAL VIDEO</span>
           <h3>Basketball Rebound Findings</h3>
@@ -278,6 +216,45 @@
         </div>
       </article>
     </section>
+
+    <!-- PYTHON SOURCE CODE -->
+    <section class="code-section" id="python-code">
+      <div class="section-heading">
+        <p class="eyebrow">04 / THE SIMULATION CODE</p>
+        <h2>Explore the <span class="accent">Python model.</span></h2>
+        <p>
+          Explore the complete Python implementation behind the Monte Carlo
+          basketball simulation, including the physical model, collision
+          handling and rebound analysis.
+        </p>
+      </div>
+
+      <div class="code-panel">
+        <div class="code-header">
+          <div class="code-file">
+            <span class="code-file-icon">PY</span>
+            <div class="code-file-text">
+              <strong>BasketBall_Rebounds_MonteCarlo.py</strong>
+              <span>Python source code</span>
+            </div>
+          </div>
+          <div class="code-actions">
+            <button class="code-button" id="copy-code" type="button">Copy code</button>
+            <a class="code-button download-button"
+               href="assets/BasketBall_Rebounds_MonteCarlo.py"
+               download="BasketBall_Rebounds_MonteCarlo.py">Download .py ↓</a>
+          </div>
+        </div>
+
+        <div class="code-container">
+          <pre class="line-numbers"><code id="python-source" class="language-python">Loading Python source code...</code></pre>
+        </div>
+
+        <p class="code-status" id="code-status" aria-live="polite">
+          Loading source code...
+        </p>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -286,11 +263,9 @@
         <span class="logo-main">BASKETBALL<span class="logo-arrow">↗</span></span>
         <span class="logo-sub">REBOUND LAB</span>
       </a>
-
       <p>
         Exploring basketball through physics, probability and simulation.
       </p>
-
       <a class="back-to-top" href="#home">Back to top ↑</a>
     </div>
   </footer>
